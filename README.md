@@ -2,7 +2,7 @@
 
 A lightweight Windows Service that runs a Java-based Minecraft server (Paper, Spigot, Vanilla, etc.) as a background process. It starts the server automatically when Windows boots, captures the server console output to the Windows Event Log, and shuts the server down cleanly — running `save-all` and `stop` — when the service is stopped.
 
-Built on .NET 8 (`Microsoft.NET.Sdk.Worker`) using the `BackgroundService` hosting model.
+Built on .NET 10 (`Microsoft.NET.Sdk.Worker`) using the `BackgroundService` hosting model.
 
 ## Features
 
@@ -15,7 +15,7 @@ Built on .NET 8 (`Microsoft.NET.Sdk.Worker`) using the `BackgroundService` hosti
 ## Requirements
 
 - Windows (x64)
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) to build (the published service is self-contained for `win-x64`)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) to build (the published service is self-contained for `win-x64`)
 - A Java runtime (JDK/JRE) compatible with your Minecraft server version
 - A Minecraft server jar (e.g. PaperMC) in a dedicated directory
 - Administrator rights to install/uninstall the Windows Service
@@ -114,3 +114,5 @@ The service logs to the **Windows Event Log** under the source name **`Minecraft
 ## License
 
 Licensed under the [MIT License](LICENSE).
+
+
