@@ -4,9 +4,9 @@ namespace MinecraftService;
 
 public class MinecraftWorker(ILogger<MinecraftWorker> logger, ServiceSettings settings) : BackgroundService {
 
-	private Process Process;
-	private Task OutputReaderTask;
-	private Task ErrorReaderTask;
+	private Process? Process;
+	private Task? OutputReaderTask;
+	private Task? ErrorReaderTask;
 
 	protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
 
@@ -44,7 +44,7 @@ public class MinecraftWorker(ILogger<MinecraftWorker> logger, ServiceSettings se
 	private ProcessStartInfo CreateProcessStartInfo() {
 
 		// Build the command line arguments
-		var processStartInfo = new ProcessStartInfo(settings.JavaExe) {
+		var processStartInfo = new ProcessStartInfo(settings.JavaExe!) {
 			CreateNoWindow = true,
 			RedirectStandardInput = true,
 			RedirectStandardOutput = true,
@@ -62,7 +62,7 @@ public class MinecraftWorker(ILogger<MinecraftWorker> logger, ServiceSettings se
 			processStartInfo.ArgumentList.Add(arg);
 		}
 		processStartInfo.ArgumentList.Add("-jar");
-		processStartInfo.ArgumentList.Add(settings.JarFullPath);
+		processStartInfo.ArgumentList.Add(settings.JarFullPath!);
 		processStartInfo.ArgumentList.Add("nogui");
 
 		logger.LogInformation("Start: {commandLine}", $"{processStartInfo.FileName} {string.Join(" ", processStartInfo.ArgumentList)}");
@@ -76,7 +76,7 @@ public class MinecraftWorker(ILogger<MinecraftWorker> logger, ServiceSettings se
 
 			while (!stoppingToken.IsCancellationRequested) {
 
-				string line = await reader.ReadLineAsync();
+				string? line = await reader.ReadLineAsync();
 				if (line == null) {
 					// End of stream reached, process has likely exited
 					return;
@@ -104,7 +104,7 @@ public class MinecraftWorker(ILogger<MinecraftWorker> logger, ServiceSettings se
 			await Process.WaitForExitAsync(cancellationToken);
 			logger.LogInformation("java.exe has exited");
 
-			await Task.WhenAll(OutputReaderTask, ErrorReaderTask);
+			await Task.WhenAll(OutputReaderTask!, ErrorReaderTask!);
 			logger.LogInformation("Output reader tasks have completed. Service has been stopped.");
 		}
 

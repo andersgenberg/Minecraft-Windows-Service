@@ -12,7 +12,7 @@ var settings = new ServiceSettings {
 	JavaHome = builder.Configuration["Minecraft:JavaHome"],
 	ServerDirectory = builder.Configuration["Minecraft:ServerDirectory"],
 	JarFileName = builder.Configuration["Minecraft:JarFileName"],
-	AdditionalArgs = builder.Configuration["Minecraft:AdditionalArgs"]
+	AdditionalArgs = builder.Configuration["Minecraft:AdditionalArgs"] ?? ""
 };
 // Make settings available for dependency injection
 builder.Services.AddSingleton(settings);

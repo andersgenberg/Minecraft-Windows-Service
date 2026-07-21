@@ -4,9 +4,15 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net10.0-windows</TargetFramework>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<UserSecretsId>dotnet-MinecraftService-ceb564a6-199d-4463-aadf-449af68cabaa</UserSecretsId>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Title>Windows Minecraft Server</Title>
+		<Copyright>Copyright (c) 2026 Anders Genberg</Copyright>
+		<Version>1.0.0.0</Version>
+		<FileVersion>1.0.0.0</FileVersion>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<UserSecretsId>15a95872-a95a-407c-b823-60062466f8ac</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
